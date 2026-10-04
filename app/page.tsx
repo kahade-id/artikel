@@ -11,8 +11,29 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "PT Kawal Hak Dengan Aman",
+    logo: "https://artikel.kahade.id/favicon.svg",
+    url: "https://artikel.kahade.id",
+    sameAs: [
+      "https://kahade.id",
+      "https://karir.kahade.id",
+      "https://legal.kahade.id",
+      "https://bantuan.kahade.id",
+      "https://status.kahade.id",
+      "https://investor.kahade.id",
+      "https://artikel.kahade.id",
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+      />
       <SiteHeader />
 
       <main className="mx-auto max-w-4xl px-5 pb-20">

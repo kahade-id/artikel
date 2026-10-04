@@ -34,7 +34,7 @@ export function ArticleFilter() {
           <Button
             key={c}
             variant={active === c ? "primary" : "secondary"}
-            size="sm"
+            size="md"
             onClick={() => setActive(c)}
             aria-pressed={active === c}
           >

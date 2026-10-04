@@ -42,7 +42,7 @@ export function ShareButtons({ title, url }: ShareButtonsProps) {
 
   return (
     <div className="flex flex-wrap items-center gap-2.5">
-      <CopyButton text={url} label="Salin tautan" />
+      <CopyButton text={url} label="Salin tautan" className="min-h-[44px]" />
       {targets.map((t) => (
         <ButtonLink
           key={t.label}
@@ -52,7 +52,7 @@ export function ShareButtons({ title, url }: ShareButtonsProps) {
           variant="secondary"
           aria-label={t.label}
           title={t.label}
-          style={{ width: 40, height: 40, padding: 0 }}
+          style={{ width: 44, height: 44, padding: 0 }}
         >
           <Icon icon={t.icon} size={18} />
         </ButtonLink>
