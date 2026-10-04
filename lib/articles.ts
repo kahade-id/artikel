@@ -18,9 +18,9 @@ export interface Article {
 export const articles: Article[] = [
   {
     slug: "kenalan-dengan-kahade",
-    title: "Kenalan dengan Kahade: jual-beli serasa main medsos",
+    title: "Kenalan dengan Kahade: jual beli aman serasa main medsos",
     excerpt:
-      "Kahade adalah aplikasi jual-beli pengguna ke pengguna yang tampilannya seperti media sosial. Ini bedanya dengan marketplace yang kamu kenal.",
+      "Kahade adalah aplikasi jual-beli pengguna ke pengguna yang tampilannya seperti media sosial. Panduan jual beli aman buat yang baru kenal Kahade — ini bedanya dengan marketplace yang kamu kenal.",
     date: "1 Oktober 2026",
     dateISO: "2026-10-01",
     category: "Tentang Kahade",
@@ -69,7 +69,7 @@ export const articles: Article[] = [
   },
   {
     slug: "jual-beli-dm-rawan-ketipu",
-    title: "Kenapa jual-beli via DM rawan ketipu — dan solusinya",
+    title: "Kenapa jual-beli via DM rawan ketipu — dan cara jual beli online yang aman",
     excerpt:
       "Jutaan anak muda jual-beli lewat DM setiap hari. Transaksinya masif, tapi tanpa perlindungan apa pun. Ini modus yang paling sering terjadi dan cara menghindarinya.",
     date: "2 Oktober 2026",
@@ -124,7 +124,7 @@ export const articles: Article[] = [
   },
   {
     slug: "patungan-dan-jastip",
-    title: "Patungan dan jastip: dua fitur yang cuma ada di Kahade",
+    title: "Patungan dan jastip aman: dua fitur yang cuma ada di Kahade",
     excerpt:
       "Anak muda Indonesia sudah lama patungan dan jastip — cuma caranya masih manual dan rawan selisih. Kahade memberi wadah yang rapi dan aman untuk keduanya.",
     date: "3 Oktober 2026",
@@ -167,6 +167,149 @@ export const articles: Article[] = [
           "Yang membuat ini spesial: patungan, jastip, jasa, dan produk digital semuanya hidup di dalam feed sosial yang sama. Kamu menemukan trip jastip dari story teman, ikut patungan dari grup komunitas, memesan jasa desain dari kreator yang kamu follow.",
           "Tidak perlu pindah aplikasi, tidak perlu catat manual, tidak perlu was-was. Itulah jual beli semudah scroll medsos.",
           "Memulainya pun gratis: tidak ada biaya pendaftaran, biaya hanya 2,5% saat transaksi terjadi. Buat yang transaksinya rutin — misalnya penyedia jastip langganan — ada Kahade Plus dengan potongan 50% biaya transaksi; penjual beromzet Rp8 juta per bulan saja sudah menghemat lebih dari biaya langganannya.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "cara-jual-beli-online-yang-aman",
+    title: "Cara Jual Beli Online yang Aman: Panduan Lengkap",
+    excerpt:
+      "Transfer langsung ke penjual tak dikenal adalah cara tercepat kehilangan uang. Ini panduan lengkap cara jual beli online yang aman — dari checklist sebelum transaksi sampai platform yang melindungi pembeli dan penjual.",
+    date: "4 Oktober 2026",
+    dateISO: "2026-10-04",
+    category: "Keamanan",
+    content: [
+      {
+        heading: "Risikonya nyata, bukan sekadar cerita",
+        body: [
+          "Setiap hari, ribuan orang Indonesia bertransaksi online: lewat marketplace, media sosial, grup chat. Sebagian besar berjalan lancar — tapi sebagian kecil berakhir dengan uang hilang dan barang tak kunjung datang.",
+          "Modusnya bermacam-macam: penjual fiktif yang menghilang setelah menerima transfer, barang yang dikirim tidak sesuai foto, sampai akun kloningan yang meniru penjual terkenal. Korban penipuan online di Indonesia mencapai ratusan ribu kasus per tahun dengan kerugian miliaran rupiah.",
+          "Kabar baiknya: hampir semua kasus ini bisa dicegah dengan kebiasaan yang benar. Panduan ini merangkumnya.",
+          "Yang paling sering jadi sasaran adalah anak muda: pembeli barang preloved, tiket konser, photocard, sampai jasa desain. Transaksinya terjadi di DM dan grup chat — tempat yang akrab, tapi tanpa perlindungan. Penipu tahu persis di mana calon korbannya berkumpul.",
+        ],
+      },
+      {
+        heading: "Kenapa transfer langsung itu berbahaya",
+        body: [
+          "Pola paling umum dalam jual beli via DM atau grup chat adalah transfer langsung ke rekening pribadi penjual. Sekali uang masuk ke rekening orang lain, kamu tidak punya daya tawar apa pun.",
+          "Penjual bisa menghilang. Barang bisa tidak dikirim. Dan ketika itu terjadi, tidak ada pihak ketiga yang bisa kamu mintai tolong — bank tidak bisa menarik kembali transfer yang sudah kamu setujui, dan akun media sosial penipu bisa dibuat ulang dalam hitungan menit.",
+          "Aturan praktisnya sederhana: jangan pernah mentransfer uang ke orang yang tidak kamu kenal tanpa ada sistem yang melindungi transaksi tersebut.",
+        ],
+      },
+      {
+        heading: "Checklist sebelum kamu bertransaksi",
+        body: [
+          "Cek reputasi penjual. Lihat ulasan, umur akun, dan konsistensi kontennya. Penjual yang serius biasanya punya jejak digital yang bisa ditelusuri — bukan akun baru tanpa foto dan tanpa interaksi.",
+          "Jangan transfer langsung ke rekening pribadi. Gunakan platform atau sistem pembayaran yang menahan dana sampai barang diterima — atau setidaknya yang mencatat transaksi secara resmi.",
+          "Simpan semua bukti. Screenshot chat kesepakatan, bukti transfer, dan foto barang yang diiklankan. Bukti ini krusial kalau terjadi sengketa.",
+          "Waspadai harga yang terlalu murah. Barang branded dijual separuh harga pasaran hampir selalu jebakan. Penipu memakai harga miring untuk memancing keputusan impulsif.",
+          "Jangan terburu-buru. Tekanan seperti \u201cstok tinggal satu\u201d atau \u201cpromo berakhir hari ini\u201d adalah teknik klasik agar kamu tidak sempat berpikir jernih.",
+          "Tanyakan kebijakan pengembalian sebelum membayar. Penjual yang jujur punya jawaban jelas soal retur atau refund kalau barang tidak sesuai. Kalau jawabannya menghindar atau marah saat ditanya, itu jawaban yang cukup.",
+          "Untuk nominal besar, minta verifikasi tambahan. Video call menunjukkan barang secara langsung, atau bertemu di tempat ramai untuk serah terima. Penjual asli tidak keberatan diverifikasi — yang keberatan justru patut dicurigai.",
+        ],
+      },
+      {
+        heading: "Cara yang aman: pakai platform yang melindungi",
+        body: [
+          "Cara paling praktis menerapkan checklist di atas adalah bertransaksi lewat platform yang memang dirancang untuk itu. Di Kahade, setiap pembayaran berjalan lewat sistem yang melindungi kedua belah pihak.",
+          "Buat pembeli: dana baru diteruskan ke penjual setelah barang atau jasa diterima dan dikonfirmasi. Barang tidak dikirim? Dana kembali ke pembeli.",
+          "Buat penjual: pesanan yang sudah dibayar adalah pesanan yang pasti — tidak ada bukti transfer palsu, tidak ada pembatalan sepihak setelah barang dikirim.",
+          "Kalau terjadi perselisihan, tim Kahade menengahi berdasarkan bukti dari kedua belah pihak: chat, foto, dan resi pengiriman. Plus reputasi transparan: setiap transaksi bisa diulas, skor terlihat di profil.",
+          "Biayanya transparan dan kecil: 2,5% per transaksi (minimal Rp2.500, maksimal Rp250.000) — tanpa biaya pendaftaran, tanpa langganan wajib. Jauh lebih murah daripada sekali kena tipu.",
+          "Buat yang transaksinya rutin, ada Kahade Plus Rp99.000 per bulan: potongan 50% biaya transaksi, kuota pembebasan biaya Rp990.000 per periode, prioritas layanan pelanggan, dan badge Plus di profil. Penjual aktif bisa berhemat signifikan setiap bulan.",
+        ],
+      },
+      {
+        heading: "Mulai dengan aman hari ini",
+        body: [
+          "Keamanan jual beli online bukan soal paranoid — soal kebiasaan. Cek reputasi, jangan transfer langsung, simpan bukti, waspada harga miring, dan jangan terburu-buru.",
+          "Atau lebih sederhana: lakukan semuanya di satu tempat yang sudah menerapkan kelima hal itu secara otomatis. Kahade adalah aplikasi jual-beli pengguna ke pengguna yang tampilannya seperti media sosial — seru seperti jual beli via DM, tapi setiap transaksinya terlindungi.",
+          "Jual beli semudah scroll medsos. Dan seaman seharusnya.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "tips-tidak-tertipu-jual-beli-online",
+    title: "10 Tips Agar Tidak Tertipu Saat Jual Beli Online",
+    excerpt:
+      "Dari akun kloningan sampai bukti transfer palsu, modus penipuan jual beli online makin canggih. Berikut 10 tips konkret dan mudah diterapkan agar kamu tidak jadi korban berikutnya.",
+    date: "4 Oktober 2026",
+    dateISO: "2026-10-04",
+    category: "Keamanan",
+    content: [
+      {
+        heading: "1. Jangan transfer langsung ke rekening pribadi",
+        body: [
+          "Ini aturan nomor satu. Transfer langsung ke orang tak dikenal berarti kamu menyerahkan uang tanpa perlindungan apa pun. Selalu gunakan platform atau sistem pembayaran yang melindungi transaksi — di mana dana baru diteruskan setelah barang diterima.",
+          "Kalau penjual menolak semua metode pembayaran yang aman dan bersikeras minta transfer langsung, anggap itu jawaban: dia tidak ingin transaksinya tercatat dan bisa dipertanggungjawabkan.",
+        ],
+      },
+      {
+        heading: "2. Cek reputasi dan jejak digital penjual",
+        body: [
+          "Lihat ulasan pembeli sebelumnya, umur akun, dan konsistensi aktivitasnya. Penjual asli biasanya punya riwayat yang bisa ditelusuri. Akun baru, tanpa foto profil, tanpa interaksi — itu bendera merah.",
+          "Jangan puas dengan testimoni berupa screenshot — screenshot gampang dipalsukan. Cari ulasan di platform yang memverifikasi bahwa pengulasnya benar-benar pernah bertransaksi.",
+        ],
+      },
+      {
+        heading: "3. Waspadai harga yang terlalu murah",
+        body: [
+          "Sepatu branded dijual sepertiga harga pasaran? iPhone baru setengah harga? Hampir pasti jebakan. Penipu sengaja memasang harga miring untuk memancing keputusan impulsif sebelum kamu sempat berpikir.",
+        ],
+      },
+      {
+        heading: "4. Simpan semua bukti transaksi",
+        body: [
+          "Screenshot percakapan kesepakatan, simpan bukti transfer, dan arsipkan foto barang yang diiklankan. Kalau terjadi sengketa, bukti inilah yang menentukan — tanpa bukti, posisimu lemah.",
+          "Catat juga tanggal, nominal, dan nama akun atau nomor rekening tujuan. Detail kecil ini sering jadi pembeda saat bukti diperiksa pihak platform atau aparat.",
+        ],
+      },
+      {
+        heading: "5. Jangan klik link pembayaran dari chat asing",
+        body: [
+          "Modus phishing makin rapi: link yang mirip halaman pembayaran asli, lalu meminta data atau OTP. Jangan pernah memasukkan data sensitif lewat link yang dikirim orang tak dikenal. Lakukan pembayaran hanya lewat aplikasi atau situs resmi yang kamu buka sendiri.",
+          "Waspadai juga file APK yang dikirim via chat dengan dalih \u201caplikasi pembayaran\u201d atau \u201ckatalog produk\u201d — itu sering berisi malware pencuri data perbankan.",
+        ],
+      },
+      {
+        heading: "6. Jangan terburu-buru mengambil keputusan",
+        body: [
+          "\u201cStok tinggal satu\u201d, \u201cpromo berakhir jam 12 malam ini\u201d, \u201cada yang mau juga nih\u201d — tekanan waktu adalah senjata utama penipu. Penjual jujur tidak keberatan kamu berpikir semalam. Kalau dipaksa buru-buru, mundur.",
+        ],
+      },
+      {
+        heading: "7. Verifikasi identitas untuk transaksi besar",
+        body: [
+          "Untuk nominal besar, minta verifikasi tambahan: video call menunjukkan barang, foto KTP yang ditutupi sebagian nomornya, atau bertemu langsung di tempat ramai. Penjual asli tidak akan tersinggung diminta verifikasi.",
+        ],
+      },
+      {
+        heading: "8. Gunakan platform dengan perlindungan transaksi",
+        body: [
+          "Platform yang baik melindungi kedua belah pihak: pembeli terlindungi kalau barang tidak dikirim, penjual terlindungi dari bukti transfer palsu. Kalau platform tidak menawarkan perlindungan apa pun, tanyakan kenapa kamu harus percaya.",
+        ],
+      },
+      {
+        heading: "9. Kenali modus akun kloningan",
+        body: [
+          "Penipu meniru akun penjual terkenal dengan nama yang hampir sama — beda satu huruf, tambah underscore, atau ganti \u201co\u201d dengan angka \u201c0\u201d. Selalu cek username huruf per huruf, dan jangan percaya hanya karena foto profilnya sama.",
+          "Kalau ragu, hubungi akun asli lewat kanal resminya dan tanyakan apakah akun yang menghubungimu benar milik mereka. Butuh waktu dua menit, bisa menyelamatkan jutaan rupiah.",
+        ],
+      },
+      {
+        heading: "10. Laporkan penipuan, jangan diam saja",
+        body: [
+          "Kalau kamu — atau orang yang kamu kenal — kena tipu, laporkan. Ke platform tempat kejadian, ke penyedia layanan pembayaran, dan kalau perlu ke polisi. Laporanmu melindungi korban berikutnya. Diam justru membuat penipu bebas beraksi lagi.",
+        ],
+      },
+      {
+        heading: "Penutup: keamanan yang tidak merepotkan",
+        body: [
+          "Sepuluh tips di atas terdengar banyak, tapi intinya satu: jangan serahkan uang tanpa perlindungan. Cara termudah menerapkan semuanya sekaligus adalah bertransaksi di tempat yang sudah dirancang aman sejak awal.",
+          "Kahade adalah aplikasi jual-beli pengguna ke pengguna yang tampilannya seperti media sosial. Setiap pembayaran terlindungi — dana diteruskan ke penjual setelah pembeli konfirmasi terima — dan kalau ada sengketa, tim kami menengahi berdasarkan bukti. Biayanya transparan: 2,5% per transaksi, tanpa biaya pendaftaran.",
+          "Belanja online seharusnya seru, bukan menegangkan. Jual beli semudah scroll medsos — dan seaman seharusnya.",
         ],
       },
     ],

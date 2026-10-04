@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 const GOOGLE_FONTS_URL =
@@ -15,12 +15,15 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.svg",
   },
-  themeColor: "#ffffff",
   openGraph: {
     type: "website",
     locale: "id_ID",
     siteName: "Artikel Kahade",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({

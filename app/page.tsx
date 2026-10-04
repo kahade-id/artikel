@@ -1,6 +1,14 @@
+import type { Metadata } from "next";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ArticleFilter } from "@/components/ArticleFilter";
+
+export const metadata: Metadata = {
+  title: "Artikel Kahade — Tips Jual Beli Aman & Panduan",
+  description:
+    "Tips jual beli aman, panduan terhindar dari penipuan online, dan cerita dari dunia jual-beli sosial Kahade.",
+  alternates: { canonical: "https://artikel.kahade.id" },
+};
 
 export default function Home() {
   return (
