@@ -25,6 +25,7 @@ export function ArticleFilter() {
 
   return (
     <div>
+      <h2 className="sr-only">Daftar artikel</h2>
       <div
         role="group"
         aria-label="Filter kategori artikel"
@@ -42,6 +43,12 @@ export function ArticleFilter() {
           </Button>
         ))}
       </div>
+
+      {/* Pengumuman perubahan hasil filter untuk screen reader. */}
+      <p role="status" aria-live="polite" className="sr-only">
+        Menampilkan {filtered.length} artikel
+        {active !== "Semua" ? ` pada kategori "${active}"` : ""}.
+      </p>
 
       {filtered.length === 0 ? (
         <EmptyState
@@ -64,9 +71,9 @@ export function ArticleFilter() {
                     {articleReadTime(a)}
                   </span>
                 </div>
-                <h2 className="text-lg font-bold leading-snug tracking-tight text-black">
+                <h3 className="text-lg font-bold leading-snug tracking-tight text-black">
                   {a.title}
-                </h2>
+                </h3>
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-neutral-500">
                   {a.excerpt}
                 </p>
