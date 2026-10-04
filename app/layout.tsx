@@ -12,6 +12,10 @@ export const metadata: Metadata = {
   description:
     "Cerita, panduan, dan kabar terbaru dari Kahade — aplikasi jual-beli pengguna ke pengguna yang tampilannya seperti media sosial.",
   metadataBase: new URL("https://artikel.kahade.id"),
+  icons: {
+    icon: "/favicon.svg",
+  },
+  themeColor: "#ffffff",
   openGraph: {
     type: "website",
     locale: "id_ID",

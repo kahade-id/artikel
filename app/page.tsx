@@ -105,7 +105,7 @@ export default function Home() {
               href="https://bantuan.kahade.id"
               className="transition-colors hover:text-black"
             >
-              Pusat Bantuan
+              Bantuan
             </a>
             <a
               href="https://status.kahade.id"
@@ -113,9 +113,15 @@ export default function Home() {
             >
               Status Layanan
             </a>
+            <a
+              href="https://investor.kahade.id"
+              className="transition-colors hover:text-black"
+            >
+              Investor
+            </a>
           </div>
           <p className="text-xs text-neutral-500">
-            © 2026 PT Kawal Hak Dengan Aman
+            © {new Date().getFullYear()} PT Kawal Hak Dengan Aman
           </p>
         </div>
       </footer>
