@@ -18,7 +18,7 @@
   font-size: 1rem;
   line-height: 1.8;
   color: #404040;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 /* Drop-cap hanya untuk paragraf pertama artikel (bukan tiap section).
    ::first-letter tidak memecah teks di DOM sehingga aman untuk screen reader. */

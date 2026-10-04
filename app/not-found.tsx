@@ -1,18 +1,13 @@
 import Link from "next/link";
 import { MagnifyingGlass } from "@phosphor-icons/react/dist/ssr";
-import { Button, EmptyState, Icon, Logo } from "@kahade/ui";
+import { Button, EmptyState } from "@kahade/ui";
+import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 
 export default function NotFound() {
   return (
     <div className="flex min-h-screen flex-col bg-white">
-      <header className="border-b border-neutral-100">
-        <div className="mx-auto flex max-w-3xl items-center gap-2.5 px-5 py-4">
-          <Logo size={26} />
-          <span className="text-base font-extrabold tracking-tight text-black">
-            Artikel Kahade
-          </span>
-        </div>
-      </header>
+      <SiteHeader />
       <main className="mx-auto flex w-full max-w-3xl flex-1 items-center justify-center px-5">
         <EmptyState
           icon={MagnifyingGlass}
@@ -25,6 +20,7 @@ export default function NotFound() {
           }
         />
       </main>
+      <SiteFooter />
     </div>
   );
 }

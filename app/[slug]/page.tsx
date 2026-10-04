@@ -1,9 +1,12 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ArrowLeft, CalendarBlank, Clock } from "@phosphor-icons/react/dist/ssr";
-import { Badge, Card, Icon, Logo } from "@kahade/ui";
+import { CalendarBlank, Clock } from "@phosphor-icons/react/dist/ssr";
+import { Badge, Card, Icon } from "@kahade/ui";
 import { articles, getArticle, getRelated, articleReadTime } from "@/lib/articles";
+import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
+import { ShareButtons } from "@/components/ShareButtons";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -70,23 +73,7 @@ export default async function ArticlePage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <header className="sticky top-0 z-10 border-b border-neutral-100 bg-white/80 backdrop-blur">
-        <div className="mx-auto flex max-w-3xl items-center justify-between px-5 py-4">
-          <Link href="/" className="flex items-center gap-2.5">
-            <Logo size={26} />
-            <span className="text-base font-extrabold tracking-tight text-black">
-              Artikel Kahade
-            </span>
-          </Link>
-          <Link
-            href="/"
-            className="flex items-center gap-1.5 text-sm font-semibold text-neutral-500 transition-colors hover:text-black"
-          >
-            <Icon icon={ArrowLeft} size={15} />
-            Semua artikel
-          </Link>
-        </div>
-      </header>
+      <SiteHeader backToHome />
 
       <main className="mx-auto max-w-3xl px-5 pb-20">
         <article className="py-12">
@@ -109,7 +96,7 @@ export default async function ArticlePage({ params }: PageProps) {
             {article.excerpt}
           </p>
 
-          <div className="prose-artikel mt-10">
+          <div className="prose-artikel mt-10 max-w-[70ch]">
             {article.content.map((s) => (
               <section key={s.heading}>
                 <h2>{s.heading}</h2>
@@ -120,6 +107,21 @@ export default async function ArticlePage({ params }: PageProps) {
             ))}
           </div>
         </article>
+
+        <section
+          aria-label="Bagikan artikel"
+          className="border-t border-neutral-100 py-8"
+        >
+          <h2 className="text-base font-bold tracking-tight text-black">
+            Bagikan artikel ini
+          </h2>
+          <div className="mt-4">
+            <ShareButtons
+              title={article.title}
+              url={`https://artikel.kahade.id/${article.slug}`}
+            />
+          </div>
+        </section>
 
         {related.length > 0 && (
           <section className="border-t border-neutral-100 pt-10">
@@ -145,17 +147,7 @@ export default async function ArticlePage({ params }: PageProps) {
         )}
       </main>
 
-      <footer className="border-t border-neutral-100">
-        <div className="mx-auto flex max-w-3xl flex-col items-center gap-3 px-5 py-10 text-center">
-          <Logo size={30} />
-          <p className="text-sm text-neutral-500">
-            Jual beli semudah scroll medsos.
-          </p>
-          <p className="text-xs text-neutral-500">
-            © 2026 PT Kawal Hak Dengan Aman
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

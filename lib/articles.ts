@@ -61,6 +61,7 @@ export const articles: Article[] = [
         body: [
           "Buat pembeli: buka Kahade dan scroll feed seperti biasa. Temukan barang atau jasa yang menarik — like, komen, atau simpan. Chat dengan penjual untuk tanya-tanya atau nego. Tekan \u201cBeli via Kahade\u201d dan selesaikan pembayaran. Penjual kirim barang, kamu konfirmasi terima. Selesai.",
           "Buat penjual: buat etalase, posting barang seperti bikin konten, terima chat dari calon pembeli, kirim barang, terima dana setelah pembeli konfirmasi. Tidak ada biaya pendaftaran, tidak ada proses berbelit untuk mulai berjualan.",
+          "Soal biaya, semuanya transparan: 2,5% per transaksi (minimal Rp2.500, maksimal Rp250.000) — tanpa biaya pendaftaran dan tanpa langganan wajib. Buat yang transaksinya rutin, ada Kahade Plus Rp99.000 per bulan dengan potongan 50% biaya transaksi, kuota pembebasan biaya Rp990.000 per periode, prioritas layanan pelanggan, dan badge Plus di profil.",
           "Tagline kami merangkum semuanya: jual beli semudah scroll medsos.",
         ],
       },
@@ -81,6 +82,7 @@ export const articles: Article[] = [
           "Dalam lima tahun terakhir, media sosial di Indonesia diam-diam berubah fungsi. Akun thrift shop menjual pakaian preloved lewat Story dan DM. Komunitas sneakers lelang lewat grup chat. Fandom K-pop bertransaksi photocard bernilai jutaan rupiah lewat mention dan DM. Freelancer menawarkan jasa lewat portofolio di feed.",
           "Yang menarik: transaksi ini bersifat sosial. Pembeli mengenal penjual lewat kontennya, menilai reputasinya dari interaksi, lalu menegosiasikan harga lewat chat yang personal. Bagi generasi yang tumbuh bersama media sosial, ini cara berbelanja yang natural.",
           "Tapi ada satu kelemahan fatal: tidak ada perlindungan.",
+          "Skalanya masif: grup jual-beli di Facebook dan WhatsApp beranggotakan ratusan ribu orang per grup — semuanya bertransaksi setiap hari tanpa standar perlindungan apa pun.",
         ],
       },
       {
@@ -107,6 +109,7 @@ export const articles: Article[] = [
           "Buat pembeli: uang hanya diteruskan ke penjual setelah barang atau jasa diterima dan dikonfirmasi. Barang tidak dikirim? Dana kembali ke pembeli.",
           "Buat penjual: pesanan yang sudah dibayar adalah pesanan yang pasti. Tidak ada bukti transfer palsu, tidak ada pembatalan sepihak.",
           "Kalau terjadi perselisihan, tim Kahade menengahi berdasarkan bukti dari kedua belah pihak — chat, foto, resi pengiriman.",
+          "Perlindungan ini biayanya kecil: 2,5% per transaksi (minimal Rp2.500, maksimal Rp250.000) — jauh lebih murah daripada sekali kena tipu. Korban penipuan online di Indonesia mencapai ratusan ribu kasus per tahun dengan kerugian miliaran rupiah; biaya perlindungan Kahade tidak ada apa-apanya dibanding risiko itu.",
         ],
       },
       {
@@ -163,6 +166,7 @@ export const articles: Article[] = [
         body: [
           "Yang membuat ini spesial: patungan, jastip, jasa, dan produk digital semuanya hidup di dalam feed sosial yang sama. Kamu menemukan trip jastip dari story teman, ikut patungan dari grup komunitas, memesan jasa desain dari kreator yang kamu follow.",
           "Tidak perlu pindah aplikasi, tidak perlu catat manual, tidak perlu was-was. Itulah jual beli semudah scroll medsos.",
+          "Memulainya pun gratis: tidak ada biaya pendaftaran, biaya hanya 2,5% saat transaksi terjadi. Buat yang transaksinya rutin — misalnya penyedia jastip langganan — ada Kahade Plus dengan potongan 50% biaya transaksi; penjual beromzet Rp8 juta per bulan saja sudah menghemat lebih dari biaya langganannya.",
         ],
       },
     ],
