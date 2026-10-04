@@ -59,10 +59,14 @@ export function ArticleFilter() {
       ) : (
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((a) => (
-            <Link key={a.slug} href={`/${a.slug}`} className="group block">
+            <Link
+              key={a.slug}
+              href={`/${a.slug}`}
+              className="group block rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2"
+            >
               <Card
                 interactive
-                className="flex h-full flex-col p-6 transition-shadow group-hover:shadow-lift"
+                className="flex h-full flex-col p-6 transition-shadow group-hover:shadow-lift group-focus-visible:-translate-y-0.5 group-focus-visible:shadow-lift"
               >
                 <div className="mb-4 flex items-center justify-between">
                   <Badge variant="neutral">{a.category}</Badge>

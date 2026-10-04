@@ -26,7 +26,7 @@ export function SiteFooter() {
             <a
               key={l.href}
               href={l.href}
-              className="transition-colors hover:text-black"
+              className="rounded transition-colors hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2"
             >
               {l.label}
             </a>

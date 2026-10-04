@@ -42,7 +42,16 @@ export default function RootLayout({
         />
         <link href={GOOGLE_FONTS_URL} rel="stylesheet" />
       </head>
-      <body>{children}</body>
+      <body>
+        {/* Skip-to-content untuk pengguna keyboard & screen reader. */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-black focus:px-4 focus:py-2.5 focus:text-sm focus:font-bold focus:text-white"
+        >
+          Lewati ke konten utama
+        </a>
+        {children}
+      </body>
     </html>
   );
 }

@@ -75,7 +75,7 @@ export default async function ArticlePage({ params }: PageProps) {
       />
       <SiteHeader backToHome />
 
-      <main className="mx-auto max-w-3xl px-5 pb-20">
+      <main id="main-content" className="mx-auto max-w-3xl px-5 pb-20">
         <article className="py-12">
           <div className="flex flex-wrap items-center gap-3">
             <Badge variant="neutral">{article.category}</Badge>
@@ -130,7 +130,11 @@ export default async function ArticlePage({ params }: PageProps) {
             </h2>
             <div className="mt-5 grid gap-5 sm:grid-cols-2">
               {related.map((r) => (
-                <Link key={r.slug} href={`/${r.slug}`} className="group block">
+                <Link
+                  key={r.slug}
+                  href={`/${r.slug}`}
+                  className="group block rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2"
+                >
                   <Card interactive className="h-full p-6">
                     <Badge variant="neutral">{r.category}</Badge>
                     <h3 className="mt-3 font-bold leading-snug text-black">

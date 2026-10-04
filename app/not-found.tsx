@@ -7,7 +7,10 @@ export default function NotFound() {
   return (
     <div className="flex min-h-screen flex-col bg-white">
       <SiteHeader />
-      <main className="mx-auto flex w-full max-w-3xl flex-1 items-center justify-center px-5">
+      <main
+        id="main-content"
+        className="mx-auto flex w-full max-w-3xl flex-1 items-center justify-center px-5"
+      >
         <EmptyState
           icon={MagnifyingGlass}
           title="Artikel tidak ditemukan"

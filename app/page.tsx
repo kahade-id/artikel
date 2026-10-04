@@ -36,7 +36,7 @@ export default function Home() {
       />
       <SiteHeader />
 
-      <main className="mx-auto max-w-4xl px-5 pb-20">
+      <main id="main-content" className="mx-auto max-w-4xl px-5 pb-20">
         {/* Hero */}
         <section className="py-14 text-center sm:py-20">
           <h1 className="mx-auto max-w-2xl text-4xl font-extrabold tracking-tight text-black sm:text-5xl">
