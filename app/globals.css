@@ -20,7 +20,9 @@
   color: #404040;
   margin-bottom: 1rem;
 }
-.prose-artikel p:first-of-type::first-letter {
+/* Drop-cap hanya untuk paragraf pertama artikel (bukan tiap section).
+   ::first-letter tidak memecah teks di DOM sehingga aman untuk screen reader. */
+.prose-artikel > section:first-of-type > p:first-of-type::first-letter {
   font-size: 3.25rem;
   font-weight: 800;
   line-height: 1;

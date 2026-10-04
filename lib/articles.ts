@@ -7,9 +7,11 @@ export interface Article {
   slug: string;
   title: string;
   excerpt: string;
+  /** Tanggal tampil, format Indonesia: "4 Oktober 2026". */
   date: string;
+  /** Tanggal ISO untuk mesin (sitemap, OG): "2026-10-04". */
+  dateISO: string;
   category: string;
-  readTime: string;
   content: ArticleSection[];
 }
 
@@ -20,8 +22,8 @@ export const articles: Article[] = [
     excerpt:
       "Kahade adalah aplikasi jual-beli pengguna ke pengguna yang tampilannya seperti media sosial. Ini bedanya dengan marketplace yang kamu kenal.",
     date: "1 Oktober 2026",
+    dateISO: "2026-10-01",
     category: "Tentang Kahade",
-    readTime: "5 menit",
     content: [
       {
         heading: "Jual beli yang tampilannya kayak medsos",
@@ -70,8 +72,8 @@ export const articles: Article[] = [
     excerpt:
       "Jutaan anak muda jual-beli lewat DM setiap hari. Transaksinya masif, tapi tanpa perlindungan apa pun. Ini modus yang paling sering terjadi dan cara menghindarinya.",
     date: "2 Oktober 2026",
+    dateISO: "2026-10-02",
     category: "Keamanan",
-    readTime: "6 menit",
     content: [
       {
         heading: "DM adalah pasar terbesar yang tak terlihat",
@@ -123,8 +125,8 @@ export const articles: Article[] = [
     excerpt:
       "Anak muda Indonesia sudah lama patungan dan jastip — cuma caranya masih manual dan rawan selisih. Kahade memberi wadah yang rapi dan aman untuk keduanya.",
     date: "3 Oktober 2026",
+    dateISO: "2026-10-03",
     category: "Fitur",
-    readTime: "5 menit",
     content: [
       {
         heading: "Budaya yang belum punya rumah",
@@ -169,4 +171,29 @@ export const articles: Article[] = [
 
 export function getArticle(slug: string): Article | undefined {
   return articles.find((a) => a.slug === slug);
+}
+
+/**
+ * Estimasi waktu baca dari jumlah kata (±200 kata/menit).
+ * Dihitung otomatis agar selalu akurat — penulis tidak perlu mengisi manual.
+ */
+export function articleReadTime(article: Article): string {
+  const words = article.content
+    .flatMap((s) => [s.heading, ...s.body])
+    .join(" ")
+    .split(/\s+/)
+    .filter(Boolean).length;
+  return `${Math.max(1, Math.round(words / 200))} menit`;
+}
+
+/**
+ * Artikel terkait: utamakan kategori sama, lalu sisanya.
+ * Tidak pernah mengembalikan artikel yang sedang dibaca.
+ */
+export function getRelated(slug: string, count = 2): Article[] {
+  const current = getArticle(slug);
+  const others = articles.filter((a) => a.slug !== slug);
+  const sameCat = others.filter((a) => current && a.category === current.category);
+  const rest = others.filter((a) => !current || a.category !== current.category);
+  return [...sameCat, ...rest].slice(0, count);
 }

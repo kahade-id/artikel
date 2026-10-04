@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, CalendarBlank, Clock } from "@phosphor-icons/react/dist/ssr";
 import { Badge, Card, Icon, Logo } from "@kahade/ui";
-import { articles } from "@/lib/articles";
+import { articles, articleReadTime } from "@/lib/articles";
 
 export default function Home() {
   return (
@@ -47,9 +47,9 @@ export default function Home() {
               >
                 <div className="mb-4 flex items-center justify-between">
                   <Badge variant="neutral">{a.category}</Badge>
-                  <span className="flex items-center gap-1 text-xs text-neutral-400">
+                  <span className="flex items-center gap-1 text-xs text-neutral-500">
                     <Icon icon={Clock} size={13} />
-                    {a.readTime}
+                    {articleReadTime(a)}
                   </span>
                 </div>
                 <h2 className="text-lg font-bold leading-snug tracking-tight text-black">
@@ -59,7 +59,7 @@ export default function Home() {
                   {a.excerpt}
                 </p>
                 <div className="mt-5 flex items-center justify-between border-t border-neutral-100 pt-4">
-                  <span className="flex items-center gap-1.5 text-xs text-neutral-400">
+                  <span className="flex items-center gap-1.5 text-xs text-neutral-500">
                     <Icon icon={CalendarBlank} size={13} />
                     {a.date}
                   </span>
@@ -107,8 +107,14 @@ export default function Home() {
             >
               Pusat Bantuan
             </a>
+            <a
+              href="https://status.kahade.id"
+              className="transition-colors hover:text-black"
+            >
+              Status Layanan
+            </a>
           </div>
-          <p className="text-xs text-neutral-400">
+          <p className="text-xs text-neutral-500">
             © 2026 PT Kawal Hak Dengan Aman
           </p>
         </div>
