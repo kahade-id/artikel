@@ -55,6 +55,11 @@ export function ArticleFilter() {
           icon={MagnifyingGlass}
           title="Belum ada artikel"
           description={`Belum ada artikel pada kategori "${active}".`}
+          action={
+            <Button variant="secondary" onClick={() => setActive("Semua")}>
+              Tampilkan semua artikel
+            </Button>
+          }
         />
       ) : (
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
