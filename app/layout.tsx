@@ -13,8 +13,16 @@ export const metadata: Metadata = {
     "Cerita, panduan, dan kabar terbaru dari Kahade — aplikasi jual-beli pengguna ke pengguna yang tampilannya seperti media sosial.",
   metadataBase: new URL("https://artikel.kahade.id"),
   icons: {
-    icon: "/favicon.svg",
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/icon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon-16x16.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
   },
+  manifest: "/manifest.webmanifest",
   openGraph: {
     type: "website",
     locale: "id_ID",
