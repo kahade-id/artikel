@@ -5,7 +5,7 @@ import {
   WhatsappLogo,
   XLogo,
 } from "@phosphor-icons/react/dist/ssr";
-import { CopyButton, Icon } from "@kahade/ui";
+import { CopyButton, ButtonLink, Icon } from "@kahade/ui";
 
 interface ShareButtonsProps {
   /** Judul artikel untuk teks bagikan. */
@@ -44,17 +44,18 @@ export function ShareButtons({ title, url }: ShareButtonsProps) {
     <div className="flex flex-wrap items-center gap-2.5">
       <CopyButton text={url} label="Salin tautan" />
       {targets.map((t) => (
-        <a
+        <ButtonLink
           key={t.label}
           href={t.href}
           target="_blank"
           rel="noopener noreferrer"
+          variant="secondary"
           aria-label={t.label}
           title={t.label}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200 text-neutral-600 transition-all duration-150 hover:border-black hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2 active:scale-95"
+          style={{ width: 40, height: 40, padding: 0 }}
         >
           <Icon icon={t.icon} size={18} />
-        </a>
+        </ButtonLink>
       ))}
     </div>
   );

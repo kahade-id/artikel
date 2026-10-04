@@ -1,6 +1,5 @@
-import Link from "next/link";
 import { MagnifyingGlass } from "@phosphor-icons/react/dist/ssr";
-import { Button, EmptyState } from "@kahade/ui";
+import { ButtonLink, EmptyState } from "@kahade/ui";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 
@@ -14,9 +13,7 @@ export default function NotFound() {
           title="Artikel tidak ditemukan"
           description="Alamat yang kamu tuju tidak ada atau sudah dipindahkan."
           action={
-            <Link href="/">
-              <Button>Lihat semua artikel</Button>
-            </Link>
+            <ButtonLink href="/">Lihat semua artikel</ButtonLink>
           }
         />
       </main>

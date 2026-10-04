@@ -2,9 +2,13 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, CalendarBlank, Clock } from "@phosphor-icons/react/dist/ssr";
-import { Badge, Card, EmptyState, Icon } from "@kahade/ui";
-import { MagnifyingGlass } from "@phosphor-icons/react/dist/ssr";
+import {
+  ArrowRight,
+  CalendarBlank,
+  Clock,
+  MagnifyingGlass,
+} from "@phosphor-icons/react/dist/ssr";
+import { Badge, Button, Card, EmptyState, Icon } from "@kahade/ui";
 import { articles, articleReadTime, type Article } from "@/lib/articles";
 
 /**
@@ -27,21 +31,15 @@ export function ArticleFilter() {
         className="mb-8 flex flex-wrap justify-center gap-2"
       >
         {categories.map((c) => (
-          <button
+          <Button
             key={c}
-            type="button"
+            variant={active === c ? "primary" : "secondary"}
+            size="sm"
             onClick={() => setActive(c)}
             aria-pressed={active === c}
-            className={[
-              "rounded-full px-4 py-2 text-sm font-semibold transition-all duration-150",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2",
-              active === c
-                ? "bg-black text-white"
-                : "border border-neutral-200 text-neutral-600 hover:border-black hover:text-black",
-            ].join(" ")}
           >
             {c}
-          </button>
+          </Button>
         ))}
       </div>
 
