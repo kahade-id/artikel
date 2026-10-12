@@ -20,6 +20,7 @@ import {
   getArticle,
   getRelated,
 } from "@/lib/articles";
+import { ReadingProgress } from "@/components/ReadingProgress";
 import { ShareButtons } from "@/components/ShareButtons";
 
 interface PageProps {
@@ -92,6 +93,7 @@ export default async function ArticlePage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
+      <ReadingProgress targetId="isi-artikel" />
       <article>
         <PageHeader
           size="h1"
@@ -122,7 +124,7 @@ export default async function ArticlePage({ params }: PageProps) {
                 />
               )}
 
-              <Prose className="max-w-reading">
+              <Prose id="isi-artikel" className="max-w-reading">
                 {sections.map((s) => (
                   <Fragment key={s.id}>
                     <h2 id={s.id}>{s.heading}</h2>
