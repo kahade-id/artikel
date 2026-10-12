@@ -1,11 +1,25 @@
+import { Fragment } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { CalendarBlank, Clock } from "@phosphor-icons/react/dist/ssr";
-import { Badge, Card, Icon } from "@kahade/ui";
-import { articles, getArticle, getRelated, articleReadTime } from "@/lib/articles";
-import { SiteHeader } from "@/components/SiteHeader";
-import { SiteFooter } from "@/components/SiteFooter";
+import {
+  Breadcrumb,
+  Container,
+  IndexList,
+  PageHeader,
+  Prose,
+  Section,
+  SectionHeader,
+  TextLink,
+  Toc,
+} from "@kahade/ui";
+import {
+  articles,
+  articleReadTime,
+  articleSections,
+  getArticle,
+  getRelated,
+} from "@/lib/articles";
 import { ShareButtons } from "@/components/ShareButtons";
 
 interface PageProps {
@@ -47,7 +61,11 @@ export default async function ArticlePage({ params }: PageProps) {
   const article = getArticle(slug);
   if (!article) notFound();
 
-  const related = getRelated(slug, 2);
+  const url = `https://artikel.kahade.id/${article.slug}`;
+  const readTime = articleReadTime(article);
+  const sections = articleSections(article);
+  const toc = sections.map((s) => ({ id: s.id, label: s.heading }));
+  const related = getRelated(slug, 3);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -64,94 +82,101 @@ export default async function ArticlePage({ params }: PageProps) {
       "@type": "Organization",
       name: "Kahade",
     },
-    mainEntityOfPage: `https://artikel.kahade.id/${article.slug}`,
+    mainEntityOfPage: url,
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <SiteHeader backToHome />
 
-      <main id="main-content" className="mx-auto max-w-3xl px-5 pb-20">
-        <article className="py-12">
-          <div className="flex flex-wrap items-center gap-3">
-            <Badge variant="neutral">{article.category}</Badge>
-            <span className="flex items-center gap-1.5 text-sm text-neutral-500">
-              <Icon icon={CalendarBlank} size={14} />
-              {article.date}
-            </span>
-            <span className="flex items-center gap-1.5 text-sm text-neutral-500">
-              <Icon icon={Clock} size={14} />
-              {articleReadTime(article)}
-            </span>
-          </div>
+      <article>
+        <PageHeader
+          size="h1"
+          breadcrumb={
+            <Breadcrumb items={[{ label: "Artikel", href: "/" }, { label: article.title }]} />
+          }
+          eyebrow={article.category}
+          title={article.title}
+          lede={article.excerpt}
+          meta={[
+            {
+              label: "Diterbitkan",
+              value: <time dateTime={article.dateISO}>{article.date}</time>,
+            },
+            { label: "Waktu baca", value: readTime },
+          ]}
+        />
 
-          <h1 className="mt-5 text-3xl font-extrabold leading-tight tracking-tight text-black sm:text-4xl">
-            {article.title}
-          </h1>
-          <p className="mt-4 text-lg leading-relaxed text-neutral-500">
-            {article.excerpt}
-          </p>
+        <Container className="py-12 sm:py-16 lg:py-20">
+          <div className="lg:grid lg:grid-cols-12 lg:gap-12">
+            <div className="min-w-0 lg:col-span-8">
+              {toc.length > 2 && (
+                <Toc
+                  items={toc}
+                  title="Daftar isi"
+                  variant="disclosure"
+                  className="mb-10 lg:hidden"
+                />
+              )}
 
-          <div className="prose-artikel mt-10 max-w-[70ch]">
-            {article.content.map((s) => (
-              <section key={s.heading}>
-                <h2>{s.heading}</h2>
-                {s.body.map((p, i) => (
-                  <p key={i}>{p}</p>
+              <Prose className="max-w-reading">
+                {sections.map((s) => (
+                  <Fragment key={s.id}>
+                    <h2 id={s.id}>{s.heading}</h2>
+                    {s.body.map((p, i) => (
+                      <p key={i}>{p}</p>
+                    ))}
+                  </Fragment>
                 ))}
-              </section>
-            ))}
-          </div>
-        </article>
+              </Prose>
 
-        <section
-          aria-label="Bagikan artikel"
-          className="border-t border-neutral-100 py-8"
-        >
-          <h2 className="text-base font-bold tracking-tight text-black">
-            Bagikan artikel ini
-          </h2>
-          <div className="mt-4">
-            <ShareButtons
-              title={article.title}
-              url={`https://artikel.kahade.id/${article.slug}`}
-            />
-          </div>
-        </section>
-
-        {related.length > 0 && (
-          <section className="border-t border-neutral-100 pt-10">
-            <h2 className="text-xl font-bold tracking-tight text-black">
-              Baca juga
-            </h2>
-            <div className="mt-5 grid gap-5 sm:grid-cols-2">
-              {related.map((r) => (
-                <Link
-                  key={r.slug}
-                  href={`/${r.slug}`}
-                  className="group block rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2"
-                >
-                  <Card interactive className="h-full p-6">
-                    <Badge variant="neutral">{r.category}</Badge>
-                    <h3 className="mt-3 font-bold leading-snug text-black">
-                      {r.title}
-                    </h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-neutral-500">
-                      {r.excerpt}
-                    </p>
-                  </Card>
-                </Link>
-              ))}
+              <div className="mt-14 max-w-reading border-t border-line pt-8 lg:hidden">
+                <h2 className="text-small font-semibold text-fg">Bagikan artikel ini</h2>
+                <ShareButtons title={article.title} url={url} className="mt-4" />
+              </div>
             </div>
-          </section>
-        )}
-      </main>
 
-      <SiteFooter />
-    </div>
+            <aside aria-label="Bagikan dan daftar isi" className="hidden lg:col-span-3 lg:col-start-10 lg:block">
+              <div className="sticky top-28 -mx-1 -mt-1 max-h-[calc(100dvh-8rem)] overflow-y-auto px-1 pt-1 pb-4">
+                <p className="mb-4 text-caption font-semibold text-fg">Bagikan artikel</p>
+                <ShareButtons title={article.title} url={url} />
+                {toc.length > 2 && <Toc items={toc} className="mt-8 border-t border-line pt-8" />}
+              </div>
+            </aside>
+          </div>
+        </Container>
+      </article>
+
+      {related.length > 0 && (
+        <Section tone="muted" divider>
+          <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+            <div className="lg:col-span-4">
+              <SectionHeader
+                size="h3"
+                title="Baca juga"
+                description="Artikel lain dengan topik yang berdekatan."
+              />
+              <TextLink as={Link} href="/" className="mt-4">
+                Semua artikel
+              </TextLink>
+            </div>
+            <div className="lg:col-span-8">
+              <IndexList
+                linkAs={Link}
+                items={related.map((r) => ({
+                  href: `/${r.slug}`,
+                  title: r.title,
+                  description: r.excerpt,
+                  meta: `${r.category} · ${articleReadTime(r)} baca`,
+                }))}
+              />
+            </div>
+          </div>
+        </Section>
+      )}
+    </>
   );
 }

@@ -344,3 +344,65 @@ export function getRelated(slug: string, count = 2): Article[] {
   const rest = others.filter((a) => !current || a.category !== current.category);
   return [...sameCat, ...rest].slice(0, count);
 }
+
+/** Ringkasan artikel untuk daftar (tanpa isi) — ringan dikirim ke klien. */
+export interface ArticleSummary {
+  slug: string;
+  title: string;
+  excerpt: string;
+  date: string;
+  dateISO: string;
+  category: string;
+  readTime: string;
+}
+
+export function toSummary(article: Article): ArticleSummary {
+  return {
+    slug: article.slug,
+    title: article.title,
+    excerpt: article.excerpt,
+    date: article.date,
+    dateISO: article.dateISO,
+    category: article.category,
+    readTime: articleReadTime(article),
+  };
+}
+
+/**
+ * Semua artikel, terbaru lebih dulu. Bila tanggal sama, artikel yang
+ * ditambahkan belakangan di `articles` dianggap lebih baru.
+ */
+export function getArticlesByNewest(): Article[] {
+  return articles
+    .map((article, index) => ({ article, index }))
+    .sort((a, b) => b.article.dateISO.localeCompare(a.article.dateISO) || b.index - a.index)
+    .map(({ article }) => article);
+}
+
+/** Kategori unik, sesuai urutan kemunculan pertama di data. */
+export function getCategories(): string[] {
+  return Array.from(new Set(articles.map((a) => a.category)));
+}
+
+/** Slug ramah URL untuk jangkar heading (mis. "1. Jangan transfer" → "jangan-transfer"). */
+export function slugifyHeading(label: string): string {
+  return label
+    .toLowerCase()
+    .replace(/^\d+\.\s*/, "")
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/&/g, " dan ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+/** Bagian artikel beserta id jangkar unik — untuk heading dan daftar isi. */
+export function articleSections(article: Article): (ArticleSection & { id: string })[] {
+  const used = new Set<string>();
+  return article.content.map((section, i) => {
+    let id = slugifyHeading(section.heading) || `bagian-${i + 1}`;
+    while (used.has(id)) id = `${id}-${i + 1}`;
+    used.add(id);
+    return { ...section, id };
+  });
+}
