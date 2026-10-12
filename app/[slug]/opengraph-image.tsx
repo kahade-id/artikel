@@ -1,13 +1,19 @@
 import { ImageResponse } from "next/og";
-import { getArticle } from "@/lib/articles";
+import { articleReadTime, articles, getArticle } from "@/lib/articles";
+import { OG_COLORS, OG_SIZE, OgLockup, loadOgFonts } from "@/lib/og";
 
-export const size = { width: 1200, height: 630 };
+export const size = OG_SIZE;
 export const contentType = "image/png";
+
+/** Prerender OG image tiap artikel saat build (bukan saat request). */
+export function generateStaticParams() {
+  return articles.map((a) => ({ slug: a.slug }));
+}
 
 /**
  * OG image per artikel — di-generate saat build (static).
- * Desain: putih, aksen kuning brand, judul hitam. Tanpa fetch font
- * eksternal agar build tidak bergantung jaringan.
+ * Desain: latar hitam, mark kuning, judul putih tebal, strip meta.
+ * Font dibaca dari file lokal agar build tidak bergantung jaringan.
  */
 export default async function Image({
   params,
@@ -19,6 +25,8 @@ export default async function Image({
 
   const title = article?.title ?? "Artikel Kahade";
   const category = article?.category ?? "";
+  const meta = article ? `${article.date} · ${articleReadTime(article)} baca` : "";
+  const titleSize = title.length > 64 ? 60 : 68;
 
   return new ImageResponse(
     (
@@ -28,56 +36,55 @@ export default async function Image({
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
-          padding: "80px",
-          backgroundColor: "#ffffff",
-          fontFamily: "sans-serif",
+          justifyContent: "space-between",
+          padding: "72px 80px",
+          backgroundColor: OG_COLORS.bg,
+          color: OG_COLORS.fg,
+          fontFamily: "Plus Jakarta Sans",
         }}
       >
-        <div
-          style={{
-            width: "72px",
-            height: "12px",
-            backgroundColor: "#FFD200",
-            borderRadius: "6px",
-            marginBottom: "32px",
-          }}
-        />
-        {category && (
+        <OgLockup />
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          {category && (
+            <div
+              style={{
+                fontSize: 28,
+                fontWeight: 500,
+                color: OG_COLORS.muted,
+                marginBottom: 20,
+              }}
+            >
+              {category}
+            </div>
+          )}
           <div
             style={{
-              fontSize: "28px",
-              fontWeight: 600,
-              color: "#737373",
-              marginBottom: "16px",
+              fontSize: titleSize,
+              fontWeight: 700,
+              lineHeight: 1.08,
+              letterSpacing: "-0.03em",
+              maxWidth: 1000,
             }}
           >
-            {category}
+            {title}
           </div>
-        )}
-        <div
-          style={{
-            fontSize: "64px",
-            fontWeight: 800,
-            lineHeight: 1.15,
-            color: "#000000",
-            letterSpacing: "-0.02em",
-          }}
-        >
-          {title}
         </div>
         <div
           style={{
-            marginTop: "40px",
-            fontSize: "30px",
-            fontWeight: 700,
-            color: "#000000",
+            display: "flex",
+            justifyContent: "space-between",
+            borderTop: `1px solid ${OG_COLORS.line}`,
+            paddingTop: 24,
+            fontSize: 24,
+            fontWeight: 500,
+            color: OG_COLORS.subtle,
           }}
         >
-          Artikel Kahade
+          <div>{meta}</div>
+          <div>artikel.kahade.id</div>
         </div>
       </div>
     ),
-    { ...size },
+    { ...size, fonts: await loadOgFonts() },
   );
 }

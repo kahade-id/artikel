@@ -2,109 +2,102 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import {
-  ArrowRight,
-  CalendarBlank,
-  Clock,
-  MagnifyingGlass,
-} from "@phosphor-icons/react/dist/ssr";
-import { Badge, Button, Card, EmptyState, Icon } from "@kahade/ui";
-import { articles, articleReadTime, type Article } from "@/lib/articles";
+import { ArrowRight, MagnifyingGlass } from "@phosphor-icons/react/dist/ssr";
+import { Button, EmptyState, Icon, Reveal, Tabs } from "@kahade/ui";
+import type { ArticleSummary } from "@/lib/articles";
+
+const ALL = "Semua";
+
+interface ArticleFilterProps {
+  /** Ringkasan artikel, terbaru lebih dulu (tanpa isi — ringan di klien). */
+  articles: ArticleSummary[];
+  /** Kategori unik dari data — kategori baru otomatis jadi filter. */
+  categories: string[];
+}
 
 /**
- * Grid artikel dengan filter kategori (client-side).
- * Kategori diambil otomatis dari data — tambah artikel berkategori baru
- * langsung muncul sebagai filter tanpa ubah kode.
+ * Daftar artikel editorial (tanggal | judul + ringkasan | kategori · durasi)
+ * dengan filter kategori berbentuk tab. Tanpa JS, tab "Semua" tetap tampil
+ * dengan seluruh artikel.
  */
-export function ArticleFilter() {
-  const categories = ["Semua", ...Array.from(new Set(articles.map((a) => a.category)))];
-  const [active, setActive] = useState("Semua");
+export function ArticleFilter({ articles, categories }: ArticleFilterProps) {
+  const [active, setActive] = useState(ALL);
 
-  const filtered: Article[] =
-    active === "Semua" ? articles : articles.filter((a) => a.category === active);
+  const filtered = active === ALL ? articles : articles.filter((a) => a.category === active);
 
   return (
     <div>
-      <h2 className="sr-only">Daftar artikel</h2>
-      <div
-        role="group"
-        aria-label="Filter kategori artikel"
-        className="mb-8 flex flex-wrap justify-center gap-2"
-      >
-        {categories.map((c) => (
-          <Button
-            key={c}
-            variant={active === c ? "primary" : "secondary"}
-            size="md"
-            onClick={() => setActive(c)}
-            aria-pressed={active === c}
-          >
-            {c}
-          </Button>
-        ))}
-      </div>
+      <Tabs
+        label="Filter kategori artikel"
+        activeId={active}
+        onChange={setActive}
+        tabs={[ALL, ...categories].map((c) => ({ id: c, label: c }))}
+        renderPanel={() =>
+          filtered.length === 0 ? (
+            <EmptyState
+              icon={MagnifyingGlass}
+              title="Belum ada artikel"
+              description={`Belum ada artikel pada kategori "${active}".`}
+              action={
+                <Button variant="secondary" onClick={() => setActive(ALL)}>
+                  Tampilkan semua artikel
+                </Button>
+              }
+            />
+          ) : (
+            <ol
+              aria-label={active === ALL ? "Semua artikel" : `Artikel kategori ${active}`}
+              className="-mt-2"
+            >
+              {filtered.map((a, i) => (
+                <ArticleRow key={a.slug} article={a} delay={Math.min(i, 5) * 70} />
+              ))}
+            </ol>
+          )
+        }
+      />
 
       {/* Pengumuman perubahan hasil filter untuk screen reader. */}
       <p role="status" aria-live="polite" className="sr-only">
         Menampilkan {filtered.length} artikel
-        {active !== "Semua" ? ` pada kategori "${active}"` : ""}.
+        {active !== ALL ? ` pada kategori "${active}"` : ""}.
       </p>
-
-      {filtered.length === 0 ? (
-        <EmptyState
-          icon={MagnifyingGlass}
-          title="Belum ada artikel"
-          description={`Belum ada artikel pada kategori "${active}".`}
-          action={
-            <Button variant="secondary" onClick={() => setActive("Semua")}>
-              Tampilkan semua artikel
-            </Button>
-          }
-        />
-      ) : (
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((a) => (
-            <Link
-              key={a.slug}
-              href={`/${a.slug}`}
-              className="group block rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2"
-            >
-              <Card
-                interactive
-                className="flex h-full flex-col p-6 transition-shadow group-hover:shadow-lift group-focus-visible:-translate-y-0.5 group-focus-visible:shadow-lift"
-              >
-                <div className="mb-4 flex items-center justify-between">
-                  <Badge variant="neutral">{a.category}</Badge>
-                  <span className="flex items-center gap-1 text-xs text-neutral-500">
-                    <Icon icon={Clock} size={13} />
-                    {articleReadTime(a)}
-                  </span>
-                </div>
-                <h3 className="text-lg font-bold leading-snug tracking-tight text-black">
-                  {a.title}
-                </h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-neutral-500">
-                  {a.excerpt}
-                </p>
-                <div className="mt-5 flex items-center justify-between border-t border-neutral-100 pt-4">
-                  <span className="flex items-center gap-1.5 text-xs text-neutral-500">
-                    <Icon icon={CalendarBlank} size={13} />
-                    {a.date}
-                  </span>
-                  <span className="flex items-center gap-1 text-sm font-semibold text-black">
-                    Baca
-                    <Icon
-                      icon={ArrowRight}
-                      size={15}
-                      className="transition-transform group-hover:translate-x-0.5"
-                    />
-                  </span>
-                </div>
-              </Card>
-            </Link>
-          ))}
-        </div>
-      )}
     </div>
+  );
+}
+
+function ArticleRow({ article: a, delay }: { article: ArticleSummary; delay: number }) {
+  return (
+    <Reveal as="li" delay={delay} className="border-b border-line">
+      <Link
+        href={`/${a.slug}`}
+        className="group grid gap-y-2 rounded-tag py-7 sm:py-8 lg:grid-cols-12 lg:gap-x-8"
+      >
+        <p className="text-small text-fg-subtle tabular-nums lg:col-span-2 lg:pt-1">
+          <time dateTime={a.dateISO}>{a.date}</time>
+          <span className="lg:hidden">
+            <span aria-hidden="true"> · </span>
+            <span className="sr-only">, </span>
+            {a.category}
+          </span>
+        </p>
+        <div className="min-w-0 lg:col-span-7">
+          <h3 className="text-h3 text-fg decoration-1 underline-offset-[5px] group-hover:underline">
+            {a.title}
+          </h3>
+          <p className="mt-2 max-w-[62ch] text-small text-fg-muted sm:text-body">{a.excerpt}</p>
+          <p className="mt-3 text-small text-fg-subtle lg:hidden">{a.readTime} baca</p>
+        </div>
+        <div className="hidden lg:col-span-3 lg:flex lg:items-start lg:justify-end lg:gap-6 lg:pt-1">
+          <p className="text-right text-small">
+            <span className="block font-semibold text-fg">{a.category}</span>
+            <span className="block text-fg-subtle">{a.readTime} baca</span>
+          </p>
+          <span className="text-fg transition-transform duration-200 ease-out group-hover:translate-x-1">
+            <Icon icon={ArrowRight} size={20} />
+          </span>
+        </div>
+      </Link>
+    </Reveal>
   );
 }
